@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -15,7 +12,7 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: redturtle.faq\n"
+"Domain: DOMAIN\n"
 
 #: redturtle/faq/configure.zcml:27
 msgid "Installs the redturtle.faq add-on."
@@ -36,9 +33,9 @@ msgstr ""
 #. Default: "Icon"
 #: redturtle/faq/interfaces.py:22
 msgid "icon_label"
-msgstr ""
+msgstr "Icona"
 
 #. Default: "You can select an icon from select menu or set a FontAwesome icon name."
 #: redturtle/faq/interfaces.py:23
 msgid "icona_help"
-msgstr ""
+msgstr "Puoi selezionare un’icona fra quelle proposte nel menu a tendina oppure puoi scrivere/incollare nel campo di testo il nome di un’icona di fontawsome 5."
