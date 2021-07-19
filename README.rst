@@ -2,13 +2,6 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on pypi or github. It is a comment.
 
-.. image:: https://travis-ci.org/collective/redturtle.faq.svg?branch=master
-    :target: https://travis-ci.org/collective/redturtle.faq
-
-.. image:: https://coveralls.io/repos/github/collective/redturtle.faq/badge.svg?branch=master
-    :target: https://coveralls.io/github/collective/redturtle.faq?branch=master
-    :alt: Coveralls
-
 .. image:: https://img.shields.io/pypi/v/redturtle.faq.svg
     :target: https://pypi.python.org/pypi/redturtle.faq/
     :alt: Latest Version
@@ -25,28 +18,17 @@
 
 
 =============
-redturtle.faq
+RedTurtle Faq
 =============
 
-Tell me what your product does
+Add two new content-types to manage Faqs:
 
-Features
---------
+- FaqFolder
+- Faq
 
-- Can be bullet points
+This product is intended to be a Volto extension, so it only provides the content-types (no custom views or styles).
 
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+Faq content-type has **blocks** enabled.
 
 
 Translations
@@ -54,7 +36,7 @@ Translations
 
 This product has been translated into
 
-- Klingon (thanks, K'Plai)
+- Italian
 
 
 Installation
@@ -76,16 +58,8 @@ and then running ``bin/buildout``
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/redturtle.faq/issues
-- Source Code: https://github.com/collective/redturtle.faq
-- Documentation: https://docs.plone.org/foo/bar
-
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
+- Issue Tracker: https://github.com/RedTurtle/redturtle.faq/issues
+- Source Code: https://github.com/RedTurtle/redturtle.faq
 
 
 License
