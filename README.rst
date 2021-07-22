@@ -31,6 +31,19 @@ This product is intended to be a Volto extension, so it only provides the conten
 Faq content-type has **blocks** enabled.
 
 
+Expandable component
+--------------------
+
+FaqFolders have an additional expandable component (@faq-structure) that will return the complete structure of the current context with sub-FaqFolders and Faqs::
+
+    > curl -i http://localhost:8080/Plone/example-folder/@faq-structure -H 'Accept: application/json'
+
+
+You can also filter faqs querying with **SearchableText** index::
+
+    > curl -i http://localhost:8080/Plone/example-folder/@faq-structure?SearchableText=foo -H 'Accept: application/json'
+
+
 Translations
 ------------
 

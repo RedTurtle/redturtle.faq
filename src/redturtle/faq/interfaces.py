@@ -3,6 +3,7 @@ from redturtle.faq import _
 from plone.supermodel import model
 from zope.schema import TextLine
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from zope.interface import Interface
 
 
 class IRedturtleFaqLayer(IDefaultBrowserLayer):
@@ -26,4 +27,11 @@ class IFaqFolder(model.Schema):
             "FontAwesome icon name.",
         ),
         required=False,
+        default="",
     )
+
+
+class ISerializeFaqToJsonSummary(Interface):
+    """
+    custom interface to serialize faqs
+    """
