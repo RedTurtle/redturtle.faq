@@ -1,25 +1,18 @@
-.. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
-   If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
-   This text does not appear on pypi or github. It is a comment.
-
-.. image:: https://img.shields.io/pypi/v/redturtle.faq.svg
-    :target: https://pypi.python.org/pypi/redturtle.faq/
-    :alt: Latest Version
-
-.. image:: https://img.shields.io/pypi/status/redturtle.faq.svg
-    :target: https://pypi.python.org/pypi/redturtle.faq
-    :alt: Egg Status
-
-.. image:: https://img.shields.io/pypi/pyversions/redturtle.faq.svg?style=plastic   :alt: Supported - Python Versions
-
-.. image:: https://img.shields.io/pypi/l/redturtle.faq.svg
-    :target: https://pypi.python.org/pypi/redturtle.faq/
-    :alt: License
-
-
 =============
 RedTurtle Faq
 =============
+
+|python| |version| |ci|
+
+.. |python| image:: https://img.shields.io/pypi/pyversions/redturtle.volto.svg
+  :target: https://pypi.python.org/pypi/redturtle.faq/
+
+.. |version| image:: http://img.shields.io/pypi/v/redturtle.faq.svg
+  :target: https://pypi.python.org/pypi/redturtle.faq
+
+.. |ci| image:: https://github.com/RedTurtle/redturtle.faq/actions/workflows/tests.yml/badge.svg
+  :target: https://github.com/RedTurtle/redturtle.faq/actions
+
 
 Add two new content-types to manage Faqs:
 
