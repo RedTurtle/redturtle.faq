@@ -33,6 +33,7 @@ jobs:
     - name: Install pas.plugins.authomatic
       run: |
         pip install ".[test]" --use-deprecated legacy-resolver
+
     # test
     - name: test
       run: |
