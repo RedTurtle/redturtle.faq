@@ -18,12 +18,13 @@ class TestContentTypes(unittest.TestCase):
     def test_faq_folder_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("FaqFolder", "Faq"),
+            ("FaqFolder", "Faq", "Image", "File"),
             portal_types["FaqFolder"].allowed_content_types,
         )
 
     def test_faq_addable_types(self):
         portal_types = api.portal.get_tool(name="portal_types")
         self.assertEqual(
-            ("Image", "File"), portal_types["Faq"].allowed_content_types,
+            ("Image", "File"),
+            portal_types["Faq"].allowed_content_types,
         )
