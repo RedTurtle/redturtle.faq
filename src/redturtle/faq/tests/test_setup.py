@@ -27,7 +27,7 @@ class TestSetup(unittest.TestCase):
 
     def test_product_installed(self):
         """Test if redturtle.faq is installed."""
-        self.assertTrue(self.installer.isProductInstalled("redturtle.faq"))
+        self.assertTrue(self.installer.is_product_installed("redturtle.faq"))
 
     def test_browserlayer(self):
         """Test that IRedturtleFaqLayer is registered."""
