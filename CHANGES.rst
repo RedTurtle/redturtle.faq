@@ -5,7 +5,8 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix queries to serialize only Faq and FaqFolders.
+  [cekk]
 
 
 1.0.0 (2021-11-03)
