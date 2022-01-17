@@ -62,10 +62,12 @@ class FaqFolderSummarySerializer(FaqSummarySerializer):
         return result
 
     def get_faqs(self):
-        children = self.context.listFolderContents()
+        children = self.context.listFolderContents(
+            contentFilter={"portal_type": ["Faq", "FaqFolder"]}
+        )
         query = self._build_query()
         catalog = api.portal.get_tool(name="portal_catalog")
-        brains = catalog(query)
+        brains = catalog(**query)
         faq_uids = [x.UID for x in brains]
         res = []
         if not brains:
@@ -75,9 +77,7 @@ class FaqFolderSummarySerializer(FaqSummarySerializer):
             if child.portal_type == "Faq" and child.UID() not in faq_uids:
                 # this not meet the search
                 continue
-            data = getMultiAdapter(
-                (child, self.request), ISerializeFaqToJsonSummary
-            )()
+            data = getMultiAdapter((child, self.request), ISerializeFaqToJsonSummary)()
             if data:
                 res.append(data)
         return res
