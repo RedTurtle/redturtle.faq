@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from plone import api
-from plone.restapi.serializer.converters import json_compatible
-from redturtle.faq.interfaces import IFaq
-from redturtle.faq.interfaces import IFaqFolder
-from redturtle.faq.interfaces import IRedturtleFaqLayer
-from redturtle.faq.interfaces import ISerializeFaqToJsonSummary
-from zope.component import adapter
-from zope.component import getMultiAdapter
-from zope.interface import implementer
-from plone.restapi.blocks import visit_blocks, iter_block_transform_handlers
-from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from copy import deepcopy
+from plone import api
+from plone.restapi.blocks import iter_block_transform_handlers, visit_blocks
+from plone.restapi.interfaces import IBlockFieldSerializationTransformer
+from plone.restapi.serializer.converters import json_compatible
+from redturtle.faq.interfaces import (
+    IFaq,
+    IFaqFolder,
+    IRedturtleFaqLayer,
+    ISerializeFaqToJsonSummary,
+)
+from zope.component import adapter, getMultiAdapter
+from zope.interface import implementer
 
 
 @implementer(ISerializeFaqToJsonSummary)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from redturtle.faq.interfaces import IFaq
-from redturtle.faq.interfaces import IFaqFolder
 from plone.dexterity.content import Container
+from redturtle.faq.interfaces import IFaq, IFaqFolder
 from zope.interface import implementer
 
 

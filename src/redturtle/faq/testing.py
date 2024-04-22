@@ -6,10 +6,11 @@ from plone.app.testing import (
     IntegrationTesting,
     PloneSandboxLayer,
 )
-from plone.testing import z2
 from plone.restapi.testing import PloneRestApiDXLayer
-import redturtle.faq
+from plone.testing import z2
+
 import plone.restapi
+import redturtle.faq
 
 
 class RedturtleFaqLayer(PloneSandboxLayer):
