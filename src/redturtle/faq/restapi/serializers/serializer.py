@@ -9,12 +9,14 @@ from redturtle.faq.interfaces import ISerializeFaqToJsonSummary
 from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.interface import implementer
+from plone.restapi.blocks import visit_blocks, iter_block_transform_handlers
+from plone.restapi.interfaces import IBlockFieldSerializationTransformer
+from copy import deepcopy
 
 
 @implementer(ISerializeFaqToJsonSummary)
 @adapter(IFaq, IRedturtleFaqLayer)
 class FaqSummarySerializer(object):
-
     """
     This is not the standard summary serializer because we want also blocks.
     """
@@ -37,16 +39,31 @@ class FaqSummarySerializer(object):
         }
         blocks = getattr(obj, "blocks", {})
         if blocks:
-            result["blocks"] = blocks
+            result["blocks"] = self.serialize_blocks(blocks=blocks)
             result["blocks_layout"] = getattr(obj, "blocks_layout", [])
 
         return result
+
+    def serialize_blocks(self, blocks):
+        """
+        Return serialized blocks
+        """
+        value = deepcopy(blocks)
+
+        for block in visit_blocks(self.context, value):
+            new_block = block.copy()
+            for handler in iter_block_transform_handlers(
+                self.context, block, IBlockFieldSerializationTransformer
+            ):
+                new_block = handler(new_block)
+            block.clear()
+            block.update(new_block)
+        return json_compatible(value)
 
 
 @implementer(ISerializeFaqToJsonSummary)
 @adapter(IFaqFolder, IRedturtleFaqLayer)
 class FaqFolderSummarySerializer(FaqSummarySerializer):
-
     """
     This is not the standard summary serializer because we want alsoits children.
     """

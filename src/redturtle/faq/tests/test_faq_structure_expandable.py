@@ -27,6 +27,10 @@ class FaqStructureTest(unittest.TestCase):
 
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
 
+        self.document = api.content.create(
+            container=self.portal, type="Document", title="A document"
+        )
+
         self.folder = api.content.create(
             container=self.portal, type="Folder", title="A folder"
         )
@@ -64,6 +68,18 @@ class FaqStructureTest(unittest.TestCase):
             type="Faq",
             title="faq first level",
             icon="",
+        )
+        self.faq_with_blocks = api.content.create(
+            container=self.faq_folder_root,
+            type="Faq",
+            title="faq with blocks",
+            icon="",
+            blocks={
+                "111": {
+                    "@type": "foo",
+                    "url": f"resolveuid/{self.document.UID()}",
+                },
+            },
         )
 
         api.content.create(
@@ -122,16 +138,16 @@ class FaqStructureTest(unittest.TestCase):
             resp,
         )
         self.assertIn(
-            self.faq_folder_root["a"]["aa"]["another-faq-about-a"].UID(), resp,
+            self.faq_folder_root["a"]["aa"]["another-faq-about-a"].UID(),
+            resp,
         )
         self.assertIn(self.faq_folder_root["b"].UID(), resp)
         self.assertIn(
-            self.faq_folder_root["b"]["faq-b-searchable"].UID(), resp,
+            self.faq_folder_root["b"]["faq-b-searchable"].UID(),
+            resp,
         )
         self.assertIn(self.faq_folder_root["b"]["bb"].UID(), resp)
-        self.assertIn(
-            self.faq_folder_root["b"]["bb"]["another-b-faq"].UID(), resp
-        )
+        self.assertIn(self.faq_folder_root["b"]["bb"]["another-b-faq"].UID(), resp)
         self.assertIn(self.faq_folder_root["faq-first-level"].UID(), resp)
 
     def test_faq_structure_return_only_matching_folders_and_faqs_if_query(
@@ -149,14 +165,29 @@ class FaqStructureTest(unittest.TestCase):
             resp,
         )
         self.assertNotIn(
-            self.faq_folder_root["a"]["aa"]["another-faq-about-a"].UID(), resp,
+            self.faq_folder_root["a"]["aa"]["another-faq-about-a"].UID(),
+            resp,
         )
         self.assertIn(self.faq_folder_root["b"].UID(), resp)
         self.assertIn(
-            self.faq_folder_root["b"]["faq-b-searchable"].UID(), resp,
+            self.faq_folder_root["b"]["faq-b-searchable"].UID(),
+            resp,
         )
         self.assertNotIn(self.faq_folder_root["b"]["bb"].UID(), resp)
-        self.assertNotIn(
-            self.faq_folder_root["b"]["bb"]["another-b-faq"].UID(), resp
-        )
+        self.assertNotIn(self.faq_folder_root["b"]["bb"]["another-b-faq"].UID(), resp)
         self.assertNotIn(self.faq_folder_root["faq-first-level"].UID(), resp)
+
+    def test_faq_structure_serialize_blocks_in_faqs(self):
+        url = "{}/@faq-structure".format(self.faq_folder_root.absolute_url())
+        resp = self.api_session.get(url).json()
+
+        faq = None
+        for faqfolder in resp["items"]:
+            for faqitem in faqfolder["items"]:
+                if faqitem["UID"] == self.faq_with_blocks.UID():
+                    faq = faqitem
+                    break
+        self.assertEqual(
+            faq["blocks"],
+            {"111": {"@type": "foo", "url": self.document.absolute_url()}},
+        )
