@@ -11,16 +11,14 @@ class IRedturtleFaqLayer(IDefaultBrowserLayer):
 
 
 class IFaq(model.Schema):
-    """
-    """
+    """ """
 
 
 class IFaqFolder(model.Schema):
-    """
-    """
+    """ """
 
     icon = TextLine(
-        title=_(u"icon_label", default=u"Icon"),
+        title=_("icon_label", default="Icon"),
         description=_(
             "icona_help",
             default="You can select an icon from select menu or set a "

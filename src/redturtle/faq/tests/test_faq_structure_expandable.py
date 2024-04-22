@@ -13,7 +13,6 @@ import unittest
 
 
 class FaqStructureTest(unittest.TestCase):
-
     layer = REDTURTLE_FAQ_API_FUNCTIONAL_TESTING
 
     def setUp(self):
