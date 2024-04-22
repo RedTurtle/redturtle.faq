@@ -12,7 +12,11 @@ jobs:
         plone: ["52", "60"]
         exclude:
           - plone: "52"
-            python: ["3.9", "3.10", "3.11"]
+            python: "3.9"
+          - plone: "52"
+            python: "3.10"
+          - plone: "52"
+            python: "3.11"
     steps:
       - uses: actions/checkout@v2
       - name: Cache eggs
