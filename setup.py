@@ -21,6 +21,7 @@ setup(
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
@@ -52,7 +53,7 @@ setup(
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "plone.api>=1.8.4",
-        "plone.restapi",
+        "plone.restapi>=8.41.0",
         "plone.app.dexterity",
     ],
     extras_require={

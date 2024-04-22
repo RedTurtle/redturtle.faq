@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from redturtle.faq import _
 from plone.supermodel import model
-from zope.schema import TextLine
-from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from redturtle.faq import _
 from zope.interface import Interface
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
+from zope.schema import TextLine
 
 
 class IRedturtleFaqLayer(IDefaultBrowserLayer):
@@ -11,16 +11,14 @@ class IRedturtleFaqLayer(IDefaultBrowserLayer):
 
 
 class IFaq(model.Schema):
-    """
-    """
+    """ """
 
 
 class IFaqFolder(model.Schema):
-    """
-    """
+    """ """
 
     icon = TextLine(
-        title=_(u"icon_label", default=u"Icon"),
+        title=_("icon_label", default="Icon"),
         description=_(
             "icona_help",
             default="You can select an icon from select menu or set a "

@@ -31,7 +31,7 @@ class TestSetup(unittest.TestCase):
 
     def test_browserlayer(self):
         """Test that IRedturtleFaqLayer is registered."""
-        from redturtle.faq.interfaces import IRedturtleFaqLayer
         from plone.browserlayer import utils
+        from redturtle.faq.interfaces import IRedturtleFaqLayer
 
         self.assertIn(IRedturtleFaqLayer, utils.registered_layers())

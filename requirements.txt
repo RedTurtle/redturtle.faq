@@ -1,3 +1,4 @@
--c constraints.txt
+pip
 setuptools
 zc.buildout
+wheel

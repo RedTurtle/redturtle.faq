@@ -6,14 +6,14 @@ from plone.app.testing import (
     IntegrationTesting,
     PloneSandboxLayer,
 )
-from plone.testing import z2
 from plone.restapi.testing import PloneRestApiDXLayer
-import redturtle.faq
+from plone.testing import z2
+
 import plone.restapi
+import redturtle.faq
 
 
 class RedturtleFaqLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -38,12 +38,12 @@ REDTURTLE_FAQ_INTEGRATION_TESTING = IntegrationTesting(
 
 
 REDTURTLE_FAQ_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(REDTURTLE_FAQ_FIXTURE,), name="RedturtleFaqLayer:FunctionalTesting",
+    bases=(REDTURTLE_FAQ_FIXTURE,),
+    name="RedturtleFaqLayer:FunctionalTesting",
 )
 
 
 class RedturtleFaqRestApiLayer(PloneRestApiDXLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):

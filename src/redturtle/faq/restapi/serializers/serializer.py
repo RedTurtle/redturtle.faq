@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from copy import deepcopy
 from plone import api
+from plone.restapi.blocks import iter_block_transform_handlers, visit_blocks
+from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.serializer.converters import json_compatible
-from redturtle.faq.interfaces import IFaq
-from redturtle.faq.interfaces import IFaqFolder
-from redturtle.faq.interfaces import IRedturtleFaqLayer
-from redturtle.faq.interfaces import ISerializeFaqToJsonSummary
-from zope.component import adapter
-from zope.component import getMultiAdapter
+from redturtle.faq.interfaces import (
+    IFaq,
+    IFaqFolder,
+    IRedturtleFaqLayer,
+    ISerializeFaqToJsonSummary,
+)
+from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 
 
 @implementer(ISerializeFaqToJsonSummary)
 @adapter(IFaq, IRedturtleFaqLayer)
 class FaqSummarySerializer(object):
-
     """
     This is not the standard summary serializer because we want also blocks.
     """
@@ -37,16 +40,31 @@ class FaqSummarySerializer(object):
         }
         blocks = getattr(obj, "blocks", {})
         if blocks:
-            result["blocks"] = blocks
+            result["blocks"] = self.serialize_blocks(blocks=blocks)
             result["blocks_layout"] = getattr(obj, "blocks_layout", [])
 
         return result
+
+    def serialize_blocks(self, blocks):
+        """
+        Return serialized blocks
+        """
+        value = deepcopy(blocks)
+
+        for block in visit_blocks(self.context, value):
+            new_block = block.copy()
+            for handler in iter_block_transform_handlers(
+                self.context, block, IBlockFieldSerializationTransformer
+            ):
+                new_block = handler(new_block)
+            block.clear()
+            block.update(new_block)
+        return json_compatible(value)
 
 
 @implementer(ISerializeFaqToJsonSummary)
 @adapter(IFaqFolder, IRedturtleFaqLayer)
 class FaqFolderSummarySerializer(FaqSummarySerializer):
-
     """
     This is not the standard summary serializer because we want alsoits children.
     """

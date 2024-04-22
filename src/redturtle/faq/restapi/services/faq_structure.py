@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
-from redturtle.faq.interfaces import IFaqFolder
-from redturtle.faq.interfaces import ISerializeFaqToJsonSummary
-from zope.component import adapter
-from zope.component import getMultiAdapter
-from zope.interface import implementer
-from zope.interface import Interface
+from redturtle.faq.interfaces import IFaqFolder, ISerializeFaqToJsonSummary
+from zope.component import adapter, getMultiAdapter
+from zope.interface import implementer, Interface
 
 
 @implementer(IExpandableElement)
